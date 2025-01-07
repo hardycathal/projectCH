@@ -1,6 +1,6 @@
 package ie.atu.projectch.controller;
 
-import ie.atu.projectch.model.Customer;
+import ie.atu.projectch.entity.Customer;
 import ie.atu.projectch.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

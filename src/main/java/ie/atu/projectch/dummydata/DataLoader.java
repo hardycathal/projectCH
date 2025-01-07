@@ -4,7 +4,7 @@ import ie.atu.projectch.repo.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ie.atu.projectch.model.Customer;
+import ie.atu.projectch.entity.Customer;
 
 
 @Component

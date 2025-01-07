@@ -1,6 +1,6 @@
 package ie.atu.projectch.service;
 
-import ie.atu.projectch.model.Customer;
+import ie.atu.projectch.entity.Customer;
 import ie.atu.projectch.repo.CustomerRepo;
 import org.springframework.stereotype.Service;
 
