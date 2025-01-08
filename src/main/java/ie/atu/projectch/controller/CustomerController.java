@@ -37,6 +37,13 @@ public class CustomerController {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
+    //Save address
+    @PostMapping("/{id}/address")
+    public ResponseEntity<Customer> assignAddress(@PathVariable Long id, @RequestBody Address address){
+        Customer customerAddress = customerService.assignAddress(id, address);
+        return new ResponseEntity<>(customerAddress, HttpStatus.OK);
+    }
+
     @GetMapping("/showCustomers")
     public ResponseEntity<?> getAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
