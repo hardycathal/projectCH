@@ -1,13 +1,16 @@
 package ie.atu.projectch.controller;
 
 import ie.atu.projectch.dto.LoginDTO;
+import ie.atu.projectch.dto.Menu;
 import ie.atu.projectch.entity.Address;
 import ie.atu.projectch.entity.Customer;
+import ie.atu.projectch.feign.MenuClient;
 import ie.atu.projectch.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +20,11 @@ import java.util.Map;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final MenuClient menuClient;
 
-    public CustomerController(CustomerService customerService){
+    public CustomerController(CustomerService customerService, MenuClient menuClient){
         this.customerService = customerService;
+        this.menuClient = menuClient;
     }
 
 
@@ -58,6 +63,11 @@ public class CustomerController {
     public ResponseEntity<?> getCustomerAddress(@PathVariable Long id){
         Object[] customer = customerService.getCustomerAddress(id);
         return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
+
+    @GetMapping("/items")
+    public ResponseEntity<List<Menu>> showItems() {
+        return new ResponseEntity<>(customerService.showItems(), HttpStatus.OK);
     }
 
 }
