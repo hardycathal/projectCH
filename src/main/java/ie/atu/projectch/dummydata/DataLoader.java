@@ -47,7 +47,7 @@ public class DataLoader implements CommandLineRunner {
         customer.setPassword("password123");
         customer.setFirstName("Cathal");
         customer.setLastName("Hardy");
-        customer.setNumber("087 654 7322");
+        customer.setNumber("+353870006854");
 
         Address address = new Address();
         address.setAddressLine1("Garrfrauns");
