@@ -1,9 +1,13 @@
 package ie.atu.projectch.service;
 
+import ie.atu.projectch.dto.Menu;
 import ie.atu.projectch.entity.Address;
 import ie.atu.projectch.entity.Customer;
+import ie.atu.projectch.feign.MenuClient;
 import ie.atu.projectch.repo.AddressRepo;
 import ie.atu.projectch.repo.CustomerRepo;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +16,11 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepo customerRepo;
     private final AddressRepo addressRepo;
+    private final MenuClient menuClient;
 
-    public CustomerService(CustomerRepo customerRepo, AddressRepo addressRepo) {this.customerRepo = customerRepo;
+    public CustomerService(CustomerRepo customerRepo, AddressRepo addressRepo, MenuClient menuClient) {this.customerRepo = customerRepo;
         this.addressRepo = addressRepo;
+        this.menuClient = menuClient;
     }
 
     public void register(Customer customer) {
@@ -49,5 +55,15 @@ public class CustomerService {
     public Object[] getCustomerAddress(Long id){
         return customerRepo.findCustomerWithAddress(id);
     }
+
+    public List<Menu> showItems() {
+        ResponseEntity<List<ie.atu.projectch.dto.Menu>> response = menuClient.showItems();
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else {
+            throw new RuntimeException("Failed to fetch menu items");
+        }
+    }
+
 }
 
