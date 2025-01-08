@@ -59,6 +59,12 @@ public class CustomerController {
         return ResponseEntity.ok(customers);
     }
 
+    @GetMapping("/getCustomerByID/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id){
+        Customer customer = customerService.getCustomerById(id);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
+
     @GetMapping("/getAddress/{id}")
     public ResponseEntity<?> getCustomerAddress(@PathVariable Long id){
         Object[] customer = customerService.getCustomerAddress(id);
