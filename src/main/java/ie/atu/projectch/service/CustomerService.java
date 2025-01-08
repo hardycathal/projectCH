@@ -65,5 +65,10 @@ public class CustomerService {
         }
     }
 
+    public Customer getCustomerById(Long id) {
+        return customerRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer with ID " + id + " not found"));
+    }
+
 }
 
