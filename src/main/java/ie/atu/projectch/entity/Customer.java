@@ -1,9 +1,6 @@
 package ie.atu.projectch.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Customer {
@@ -15,6 +12,9 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String number;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     public Customer() {
     }
@@ -52,6 +52,7 @@ public class Customer {
         return number;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,5 +75,10 @@ public class Customer {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -26,20 +26,39 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Customer customer1 = new Customer(null, "johndoe@gmail.com", "password123", "John", "Doe", "083 963 2441");
-        Customer customer2 = new Customer(null, "janedoe@gmail.com", "password321", "Jane", "Doe", "086 524 4587");
-        Customer customer3 = new Customer(null, "cathalhardy@gmail.com", "password213", "Cathal", "Hardy", "087 757 5846");
+//        Customer customer1 = new Customer(null, "johndoe@gmail.com", "password123", "John", "Doe", "083 963 2441");
+//        Customer customer2 = new Customer(null, "janedoe@gmail.com", "password321", "Jane", "Doe", "086 524 4587");
+//        Customer customer3 = new Customer(null, "cathalhardy@gmail.com", "password213", "Cathal", "Hardy", "087 757 5846");
+//
+//        customerRepo.save(customer1);
+//        customerRepo.save(customer2);
+//        customerRepo.save(customer3);
+//
+//        Address address1 = new Address(null, "Garrafrauns", "Dunmore", "Tuam", "Galway", customer1);
+//        Address address2 = new Address(null, "Kilconly", "Milltown", "Tuam", "Galway", customer2);
+//        Address address3 = new Address(null, "Glenfield", "Rasharkin", "Ballymoney", "Antrim", customer3);
+//
+//        addressRepo.save(address1);
+//        addressRepo.save(address2);
+//        addressRepo.save(address3);
 
-        customerRepo.save(customer1);
-        customerRepo.save(customer2);
-        customerRepo.save(customer3);
+        Customer customer = new Customer();
+        customer.setEmail("cathal@gmail.com");
+        customer.setPassword("password123");
+        customer.setFirstName("Cathal");
+        customer.setLastName("Hardy");
+        customer.setNumber("087 654 7322");
 
-        Address address1 = new Address(null, "Garrafrauns", "Dunmore", "Tuam", "Galway", customer1);
-        Address address2 = new Address(null, "Kilconly", "Milltown", "Tuam", "Galway", customer2);
-        Address address3 = new Address(null, "Glenfield", "Rasharkin", "Ballymoney", "Antrim", customer3);
+        Address address = new Address();
+        address.setAddressLine1("Garrfrauns");
+        address.setAddressLine2("Dunmore");
+        address.setTown("Tuam");
+        address.setCounty("Galway");
 
-        addressRepo.save(address1);
-        addressRepo.save(address2);
-        addressRepo.save(address3);
+        customer.setAddress(address);
+
+// Save customer; the address will also be saved due to CascadeType.ALL
+        customerRepo.save(customer);
+
     }
 }

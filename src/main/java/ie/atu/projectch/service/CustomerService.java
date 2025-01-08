@@ -18,5 +18,9 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }
+
+    public Object[] getCustomerAddress(Long id){
+        return customerRepo.findCustomerWithAddress(id);
+    }
 }
 
