@@ -21,11 +21,13 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping("/createCustomer")
+    @PostMapping("/register")
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer){
-        customerService.createCustomer(customer);
+        customerService.register(customer);
         return new ResponseEntity<>("User Created Successfully", HttpStatus.OK);
     }
+
+
 
     @GetMapping("/showCustomers")
     public ResponseEntity<?> getAllCustomers() {

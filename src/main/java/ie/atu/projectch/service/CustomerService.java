@@ -11,7 +11,7 @@ public class CustomerService {
     private final CustomerRepo customerRepo;
     public CustomerService(CustomerRepo customerRepo) {this.customerRepo = customerRepo;}
 
-    public void createCustomer(Customer customer) {
+    public void register(Customer customer) {
         customerRepo.save(customer);
     }
 
