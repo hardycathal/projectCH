@@ -1,5 +1,6 @@
 package ie.atu.projectch.controller;
 
+import ie.atu.projectch.dto.LoginDTO;
 import ie.atu.projectch.entity.Address;
 import ie.atu.projectch.entity.Customer;
 import ie.atu.projectch.service.CustomerService;
@@ -21,13 +22,20 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+
+    //Register
     @PostMapping("/register")
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer){
         customerService.register(customer);
         return new ResponseEntity<>("User Created Successfully", HttpStatus.OK);
     }
 
-
+    //Login
+    @PostMapping("/login")
+    public ResponseEntity<Customer> login(@RequestBody LoginDTO loginDTO){
+        Customer customer = customerService.login(loginDTO.getEmail(), loginDTO.getPassword());
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 
     @GetMapping("/showCustomers")
     public ResponseEntity<?> getAllCustomers() {
@@ -38,6 +46,7 @@ public class CustomerController {
         }
         return ResponseEntity.ok(customers);
     }
+
     @GetMapping("/getAddress/{id}")
     public ResponseEntity<?> getCustomerAddress(@PathVariable Long id){
         Object[] customer = customerService.getCustomerAddress(id);

@@ -15,6 +15,16 @@ public class CustomerService {
         customerRepo.save(customer);
     }
 
+    public Customer login(String email, String password) {
+        Customer customer = customerRepo.findByEmail(email);
+
+        if (customer != null && customer.getPassword().equals(password)) {
+            return customer;
+        } else {
+            throw new RuntimeException("Invalid email or password");
+        }
+    }
+
     public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }

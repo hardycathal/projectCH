@@ -24,5 +24,6 @@ public interface CustomerRepo extends JpaRepository<Customer, Long> {
             nativeQuery = true)
     Object[] findCustomerWithAddress(@Param("customerId") Long customerId);
 
+    Customer findByEmail(String email);
 
 }
